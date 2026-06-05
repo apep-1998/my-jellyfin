@@ -17,3 +17,8 @@ services:
     group_add:
       - "987" # render
       - "983" # video
+    deploy:
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: 4G
