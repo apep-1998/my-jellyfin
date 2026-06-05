@@ -10,9 +10,13 @@ if [ ! -f .env ]; then
   cp .env.example .env
   sed -i "s/^PUID=.*/PUID=$PUID/" .env
   sed -i "s/^PGID=.*/PGID=$PGID/" .env
+
   echo ""
-  echo "Created .env — set your MOVIES_PATH in it, then run:"
-  echo "  docker compose up -d"
+  read -rp "Enter the path to your movies directory (e.g. /mnt/hdd/movies): " MOVIES_PATH
+  sed -i "s|^MOVIES_PATH=.*|MOVIES_PATH=$MOVIES_PATH|" .env
+
+  echo ""
+  echo ".env created. Run: docker compose up -d"
 else
   echo ".env already exists, skipping creation."
   echo "Run: docker compose up -d"
